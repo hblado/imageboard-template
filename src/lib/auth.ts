@@ -51,7 +51,6 @@ export const authOptions:NextAuthOptions = {
           admin: user.admin ?? false,
         };
       }
-      console.log("JWT Callback - Token After:", token);
       return token;
     },
     async session({ session, token }) {

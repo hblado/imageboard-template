@@ -1,0 +1,13 @@
+.signoutButton {
+    background-color: #c01717;
+    padding: 4px;
+    height: 2.5rem;
+    width: 5rem;
+    border-radius: 8px;
+    color: white;
+    transition: 0.5s;
+}
+
+.signoutButton:hover {
+    background-color: #de2e2e;
+}

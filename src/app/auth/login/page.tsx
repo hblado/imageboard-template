@@ -32,14 +32,13 @@ const LoginForm = () => {
     });
 
     if (signInData?.error) {
-      console.log('Erro: ', signInData.error); //DELETAR
     } else {
       router.push('/dashboard');
     }
   };
 
   return (
-    <div className={`${robotoSlab.className} inline-flex flex-col justify-self-center border rounded p-12`}>
+    <div className={`${robotoSlab.className} inline-flex flex-col justify-self-center`}>
       <h1 className="text-3xl text-white truncate">Login</h1>
       <div className="inline-flex flex-col text-xl">
         <form onSubmit={handleSubmit(onSubmit)} method="POST">

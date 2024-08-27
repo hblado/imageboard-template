@@ -1,0 +1,53 @@
+.navbarContainer {
+    display: flex;
+    height: 95px;
+    padding: 15px;
+    gap: 1rem;
+}
+
+.navbar {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-section);
+    border-radius: 16px;
+    gap: 2rem;
+    align-items: center;
+}
+
+.homeIcon {
+    height: 100%;
+    width: 5rem;
+    background-color: var(--main-section);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.antHome {
+    color: #66788a;
+}
+
+.homeIcon:hover {
+    .antHome {
+        color: #bbc6d1;
+    }
+}
+
+.navbarButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0e750e;
+    padding: 4px;
+    height: 2.5rem;
+    width: 5rem;
+    border-radius: 8px;
+    transition: 0.5s;
+}
+
+.navbarButton:hover {
+    background-color: #0c3c0c;
+}

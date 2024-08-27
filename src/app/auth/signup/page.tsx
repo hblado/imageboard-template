@@ -33,23 +33,41 @@ export default function Home() {
         'Accept': 'application/json',
       },
       body: JSON.stringify(formData),
-    }).then((response) => response.json())
-    .then(() => {
+    })
+    .then((response) => {
+      if (!response.ok) {
+        // Lida com respostas de erro (status code fora da faixa 200-299)
+        return response.json().then(errorData => {
+          console.error('Error:', errorData);
+          alert(`Error: ${errorData.message}`);
+          throw new Error(errorData.message); // Opcional: para quebrar a cadeia de promessas
+        });
+      }
+      return response.json(); // Continue se a resposta for bem-sucedida
+    })
+    .then((data) => {
+      // Aqui lidamos com a resposta de sucesso
+      console.log('Success:', data);
+      alert(`Success: ${data.message}`);
       setFormData({
         name: "",
         email: "",
         password: "",
         passwordConfirm: ""
-      })
-    })
-    .then(() => {
+      });
+      // Navegar para outra página, se necessário
       router.push('/api/auth/signin')
     })
+    .catch((error) => {
+      console.error('Unexpected error:', error);
+      alert('An unexpected error occurred.');
+    });
   };
+  
   
 
   return (
-      <div className={`${robotoSlab.className} inline-flex flex-col justify-self-center border rounded p-12`}>
+      <div className={`${robotoSlab.className} inline-flex flex-col justify-self-center`}>
         <h1 className="text-3xl text-white truncate">Sign Up</h1>
         <div className="inline-flex flex-col text-xl">
           <form method="POST" action={`/api/user`} onSubmit={submitForm}>
