@@ -1,0 +1,42 @@
+.title {
+    color: white;
+    font-size: 3rem;
+}
+
+.formSection {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1.5rem;
+}
+
+.formComponent {
+    display: flex;
+    flex-flow: column;
+    gap: 0.2rem;
+}
+
+.formLabel {
+    color: white;
+    font-size: 1rem;
+    margin-left: 1rem
+}
+
+.formInput {
+    padding: 8px;
+    background-color: #1f1f1f;
+    border: 1px solid grey;
+    border-radius: 8px;
+    color: #c4c4c4;
+}
+
+.confirmButton {
+    padding: 8px;
+    border-radius: 8px;
+    color: white;
+    background-color: #11780e;
+    transition: 0.5s;
+}
+
+.confirmButton:hover {
+    background-color: #084406;
+}
