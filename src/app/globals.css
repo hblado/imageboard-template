@@ -28,3 +28,7 @@ body {
   flex-direction: row nowrap;
   justify-content: center;
 }
+
+.title {
+  color: white;
+}

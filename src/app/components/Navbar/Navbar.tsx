@@ -2,7 +2,7 @@ import Link from 'next/link'
 import style from './Navbar.module.css'
 import { authOptions } from "@/lib/auth"
 import { getServerSession } from "next-auth"
-import SignOutButton from '@/app/compenents/SignOut/signout'
+import SignOutButton from '@/app/components/SignOut/signout'
 import { HomeOutlined } from '@ant-design/icons'
 
 export default async function Navbar() {
