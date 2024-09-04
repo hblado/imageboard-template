@@ -11,7 +11,7 @@ import style from "./login.module.css";
 const robotoSlab = Roboto_Slab({ weight: ["400"], subsets: ["latin"] });
 
 const FormSchema = z.object({
-  email: z.string().min(1, "Email is required").email("Invalid email"),
+  name: z.string().min(1, "A name is required"),
   password: z.string().min(1, "Password is required"),
 });
 
@@ -24,14 +24,14 @@ const LoginForm = () => {
   } = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      email: "",
+      name: "",
       password: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     const signInData = await signIn("credentials", {
-      email: values.email,
+      name: values.name,
       password: values.password,
       redirect: false,
     });
@@ -53,14 +53,14 @@ const LoginForm = () => {
         method="POST"
       >
         <div className={style.formComponent}>
-          <label className={style.formLabel}>Email</label>
+          <label className={style.formLabel}>Name</label>
           <input
-            type="email"
-            {...register("email")}
+            type="text"
+            {...register("name")}
             className={style.formInput}
           />
-          {errors.email && (
-            <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+          {errors.name && (
+            <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>
           )}
         </div>
         <div className={style.formComponent}>

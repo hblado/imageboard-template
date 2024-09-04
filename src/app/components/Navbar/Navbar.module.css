@@ -17,6 +17,22 @@
     flex-direction: row-reverse;
 }
 
+.boards {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-section);
+    border-radius: 16px;
+    padding: 8px;
+    gap: 1rem;
+    align-items: center;
+}
+
+.boardLink {
+    color: white;
+}
+
 .homeIcon {
     height: 100%;
     width: 5rem;

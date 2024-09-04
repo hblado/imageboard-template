@@ -9,7 +9,6 @@ export default function Home() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     password: "",
     passwordConfirm: "",
   });
@@ -49,7 +48,6 @@ export default function Home() {
         alert(`Success: ${data.message}`);
         setFormData({
           name: "",
-          email: "",
           password: "",
           passwordConfirm: "",
         });
@@ -76,18 +74,6 @@ export default function Home() {
               type="text"
               name="name"
               value={formData.name}
-              onChange={handleInput}
-              className={style.formInput}
-            />
-          </div>
-          <div className={style.formComponent}>
-            <label className={style.formLabel}>
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
               onChange={handleInput}
               className={style.formInput}
             />

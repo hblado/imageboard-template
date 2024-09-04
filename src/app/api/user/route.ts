@@ -7,7 +7,6 @@ import { hash } from "bcrypt";
 const userZod = z
   .object({
     name: z.string().min(5, "Username must have at least 5 characters."),
-    email: z.string().email("Invalid email."),
     password: z.string().min(6, "Password must have at least 6 characters."),
     passwordConfirm: z.string().min(1, "Confirm password is required."),
   })
@@ -18,23 +17,19 @@ const userZod = z
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const { name, email, password, passwordConfirm } = body;
+  const { name, password, passwordConfirm } = body;
 
   try {
     // Validate input data
-    userZod.parse({ name, email, password, passwordConfirm });
+    userZod.parse({ name, password, passwordConfirm });
 
     // Check if the user already exists
-    const existUser = await prisma.user.findUnique({
-      where: {
-        email: email,
-      },
-    });
+    const existUser = await prisma.admin.findFirst({where: {name: name}})
 
     if (existUser) {
       return NextResponse.json(
         {
-          message: "Email already exists.",
+          message: "This name has already been taken.",
         },
         { status: 409 }
       );
@@ -42,10 +37,9 @@ export async function POST(req: Request) {
 
     // Hash the password and create a new user
     const hashedPassword = await hash(password, 10);
-    const newUser = await prisma.user.create({
+    const newUser = await prisma.admin.create({
       data: {
         name,
-        email,
         password: hashedPassword,
       },
     });

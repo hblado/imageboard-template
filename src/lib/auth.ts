@@ -17,14 +17,15 @@ export const authOptions:NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "email", type: "email"},
+        name: { label: "name", type: "string"},
         password: { label: "password", type: "password" }
       },
       async authorize(credentials) {
-        if(!credentials?.email || !credentials?.password) {
+        if(!credentials?.name || !credentials?.password) {
           return null
         }
-        const existingUser = await prisma.user.findUnique({where: {email: credentials?.email}})
+        const existingUser = await prisma.admin.findFirst({ where: { name: credentials.name } });
+ // Aqui foi corrigido
         if(!existingUser){
           return null
         }
@@ -35,8 +36,6 @@ export const authOptions:NextAuthOptions = {
         return {
           id: `${existingUser.id}`,
           name: existingUser.name,
-          email: existingUser.email,
-          admin: existingUser.admin
         }
       }
     })
@@ -47,14 +46,17 @@ export const authOptions:NextAuthOptions = {
         token = {
           ...token,
           name: user.name,
-          email: user.email,
-          admin: user.admin ?? false,
         };
       }
       return token;
     },
     async session({ session, token }) {
-      session.user.admin = token.admin ?? false;
+      if (token) {
+        session.user = {
+          ...session.user,
+          name: token.name,
+        };
+      }
       return session;
     }
   }
